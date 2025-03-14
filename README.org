@@ -1,0 +1,7 @@
+* Quiz Maker
+A repository for a simple commandline quizzer
+
+
+** Features
+1. Read questions and answers from a textfile
+2. Evaluate once the questions are put in.
