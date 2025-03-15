@@ -132,6 +132,85 @@ int identificationQuiz(char ***questions, int questionsCount) {
   return 1;
 }
 
+char **shuffleArr(char ***source, int questionsCount)
+{
+  /* generating new array */
+  char **questions = malloc(sizeof(char*) * questionsCount);
+  for (int i = 0; i < questionsCount; i++)
+    questions[i] = malloc(sizeof(char) * SIZE);
+  for (int i = 0; i < questionsCount; i++)
+    strcpy(questions[i], source[1][i]);
+
+  /* shuffling */
+  srand(time(NULL));
+  int i, j;
+  char *tmp = malloc(sizeof(char) * SIZE);
+
+  for (i = 0, j = rand() % questionsCount; i < questionsCount; i++, j = rand() % questionsCount)
+    {
+      strcpy(tmp, questions[i]);
+      strcpy(questions[i], questions[j]);
+      strcpy(questions[j], tmp);
+      tmp = malloc(sizeof(char) * SIZE);
+    }
+  for (int i = 0; i < questionsCount; i++)
+    questions[i][0] = 'A' + i;
+  return questions;
+}
+
+void printChoices(char **copy, int questionsCount)
+{
+  for (int i = 0; i < questionsCount; i++)
+    {
+      printf("%s", copy[i]);
+      if (i > 0 && i%4 == 0)
+	printf("\n");
+      else
+	printf("\t");
+    }
+  printf("\n");
+}
+
+int indentificationWithChoicesQuiz(char ***questions, int questionsCount) {
+  system("clear");
+  shuffleQuestions(questions, questionsCount);
+  char *ans = malloc(sizeof(char) * SIZE);
+  char *answers = malloc(sizeof(char) * questionsCount);
+  int score = 0;
+  printf("Quiz Start: \n");
+  clearInputBuffer();
+
+  char **choices = shuffleArr(questions, questionsCount);
+  for (int i = 0; i < questionsCount; i++) {
+    system("clear");
+    printChoices(choices, questionsCount);
+    printWithCol(questions[0][i]);
+    printf("Answer: ");
+    ans = fgets(ans, SIZE, stdin);
+    fflush(stdin);
+
+    if (strstr(questions[1][i], ans))
+      score++, answers[i] = '/';
+    else
+      answers[i] = 'X';
+    printf("\n");
+  }
+  printf("##################################\nScore: %d/%d\n", score,
+         questionsCount);
+  clearInputBuffer();
+  printf("See evaluation? (Y/n): ");
+  char c;
+  scanf("%c", &c);
+
+  if (c != 'n')
+    printEval(questions, answers, questionsCount);
+
+  free(ans);
+  free(answers);
+  free(choices);
+  return 1;
+}
+
 int main(int argc, char **argv) {
   int returnSize, questionsCount;
   char ***data = mapInput(argv[1], &returnSize, &questionsCount);
@@ -140,7 +219,7 @@ int main(int argc, char **argv) {
   printf("Created by Emman-pip :)\n");
   while (1) {
     printf("----------------- Welcome to my quizzer. ----------------- \n");
-    printf("[1] Start quiz\n[2] See answer key\n[3] clear screen\n[4] "
+    printf("[1] Start identification quiz\n[2] Start indentificationWithChoices quiz\n[3] See answer key\n[4] clear screen\n[5] "
            "exit\n\n");
     int option;
     printf("Choose an option: ");
@@ -148,15 +227,18 @@ int main(int argc, char **argv) {
     scanf("%d", &option);
     switch (option) {
     case 1:
-      startQuiz(data, questionsCount);
+      identificationQuiz(data, questionsCount);
       break;
     case 2:
-      printQuestions(data, questionsCount);
+      indentificationWithChoicesQuiz(data, questionsCount);
       break;
     case 3:
-      system("clear");
+      printQuestions(data, questionsCount);
       break;
     case 4:
+      system("clear");
+      break;
+    case 5:
       exit(0);
       break;
     default:
