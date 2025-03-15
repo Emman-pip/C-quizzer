@@ -52,7 +52,7 @@ char ***mapInput(char *filename, int *returnSize, int *questionsCount) {
 void printWithCol(char *s) {
   for (int i = 0; i < (int)strlen(s); i++) {
     if (i % 64 == 0 && i > 0)
-      printf("OKAY\n");
+      printf("\n");
     printf("%c", s[i]);
   }
 }
@@ -132,10 +132,9 @@ int identificationQuiz(char ***questions, int questionsCount) {
   return 1;
 }
 
-char **shuffleArr(char ***source, int questionsCount)
-{
+char **shuffleArr(char ***source, int questionsCount) {
   /* generating new array */
-  char **questions = malloc(sizeof(char*) * questionsCount);
+  char **questions = malloc(sizeof(char *) * questionsCount);
   for (int i = 0; i < questionsCount; i++)
     questions[i] = malloc(sizeof(char) * SIZE);
   for (int i = 0; i < questionsCount; i++)
@@ -146,28 +145,26 @@ char **shuffleArr(char ***source, int questionsCount)
   int i, j;
   char *tmp = malloc(sizeof(char) * SIZE);
 
-  for (i = 0, j = rand() % questionsCount; i < questionsCount; i++, j = rand() % questionsCount)
-    {
-      strcpy(tmp, questions[i]);
-      strcpy(questions[i], questions[j]);
-      strcpy(questions[j], tmp);
-      tmp = malloc(sizeof(char) * SIZE);
-    }
+  for (i = 0, j = rand() % questionsCount; i < questionsCount;
+       i++, j = rand() % questionsCount) {
+    strcpy(tmp, questions[i]);
+    strcpy(questions[i], questions[j]);
+    strcpy(questions[j], tmp);
+    tmp = malloc(sizeof(char) * SIZE);
+  }
   for (int i = 0; i < questionsCount; i++)
     questions[i][0] = 'A' + i, questions[i][strlen(questions[i]) - 1] = '\0';
   return questions;
 }
 
-void printChoices(char **copy, int questionsCount)
-{
-  for (int i = 0; i < questionsCount; i++)
-    {
-      printf("%s", copy[i]);
-      if (i > 0 && i%4 == 0)
-	printf("\n");
-      else
-	printf("\t");
-    }
+void printChoices(char **copy, int questionsCount) {
+  for (int i = 0; i < questionsCount; i++) {
+    printf("%s", copy[i]);
+    if (i > 0 && i % 4 == 0)
+      printf("\n");
+    else
+      printf("\t");
+  }
   printf("\n\n");
 }
 
@@ -219,8 +216,10 @@ int main(int argc, char **argv) {
   printf("Created by Emman-pip :)\n");
   while (1) {
     printf("----------------- Welcome to my quizzer. ----------------- \n");
-    printf("[1] Start identification quiz\n[2] Start indentificationWithChoices quiz\n[3] See answer key\n[4] clear screen\n[5] "
-           "exit\n\n");
+    printf(
+        "[1] Start identification quiz\n[2] Start indentificationWithChoices "
+        "quiz\n[3] See answer key\n[4] clear screen\n[5] "
+        "exit\n\n");
     int option;
     printf("Choose an option: ");
     fflush(stdin);
