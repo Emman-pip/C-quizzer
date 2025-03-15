@@ -99,6 +99,39 @@ int getLine(char *string, int size) {
   return 1;
 }
 
+int startQuiz(char ***questions, int questionsCount) {
+  system("clear");
+  shuffleQuestions(questions, questionsCount);
+  char *ans = malloc(sizeof(char) * SIZE);
+  char *answers = malloc(sizeof(char) * questionsCount);
+  int score = 0;
+  printf("Quiz Start: \n");
+  clearInputBuffer();
+  for (int i = 0; i < questionsCount; i++) {
+    printf("%sAnswer: ", questions[0][i]);
+    ans = fgets(ans, SIZE, stdin);
+    fflush(stdin);
+
+    if (strstr(questions[1][i], ans))
+      score++, answers[i] = '/';
+    else
+      answers[i] = 'X';
+    printf("\n");
+  }
+  printf("##################################\nScore: %d/%d\n", score,
+         questionsCount);
+  clearInputBuffer();
+  printf("See evaluation? (Y/n): ");
+  char c;
+  scanf("%c", &c);
+
+  if (c != 'n')
+    printEval(questions, answers, questionsCount);
+
+  free(ans);
+  free(answers);
+  return 1;
+}
   int returnSize, questionsCount;
   printf("running\n");
   char ***data = mapInput(argv[1], &returnSize, &questionsCount);
