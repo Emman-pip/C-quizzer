@@ -50,6 +50,7 @@ char ***mapInput(char *filename, int *returnSize, int *questionsCount) {
 }
 
 void printQuestions(char ***questions, int size) {
+  system("clear");
   printf("#### Answer Key: ####\n");
   for (int i = 0; i < size; i++)
     printf("%d. %s----> %s\n", i + 1, questions[0][i], questions[1][i]);
