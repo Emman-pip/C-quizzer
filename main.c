@@ -52,11 +52,11 @@ char ***mapInput(char *filename, int *returnSize, int *questionsCount)
   return data;
 }
 
-void printQuestions(char ***questions, int size)
 {
+void printQuestions(char ***questions, int size) {
   printf("#### Answer Key: ####\n");
   for (int i = 0; i < size; i++)
-      printf("%s ----> %s\n", questions[0][i], questions[1][i]);
+    printf("%d. %s----> %s\n", i + 1, questions[0][i], questions[1][i]);
 }
 
 
