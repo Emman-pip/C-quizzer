@@ -88,6 +88,17 @@ void clearInputBuffer() {
     ;
 }
 
+int getLine(char *string, int size) {
+  char c;
+  int i = 0;
+  while (i < size - 1 && (c = getc(stdin)) != EOF)
+    string[i++] = c;
+  string[i] = '\0';
+  clearInputBuffer();
+
+  return 1;
+}
+
   int returnSize, questionsCount;
   printf("running\n");
   char ***data = mapInput(argv[1], &returnSize, &questionsCount);
