@@ -74,8 +74,6 @@ void printEval(char ***questions, char *eval, int size) {
     printWithCol(questions[0][i]);
     printf("-----> %s\n", questions[1][i]);
   }
-  /*printf("[%c]%d. %s----> %s\n", eval[i], i + 1, questions[0][i],*/
-  /*       questions[1][i]);*/
 }
 
 void shuffleQuestions(char ***questions, int questionsCount) {
