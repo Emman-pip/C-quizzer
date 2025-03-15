@@ -138,10 +138,11 @@ int main(int argc, char **argv) {
   printf("Created by Emman-pip :)\n");
   while (1) {
     printf("----------------- Welcome to my quizzer. ----------------- \n");
-    printf("[1] Start quiz\n[2] See answer key\n[3] clear screen\n[else] "
+    printf("[1] Start quiz\n[2] See answer key\n[3] clear screen\n[4] "
            "exit\n\n");
     int option;
     printf("Choose an option: ");
+    fflush(stdin);
     scanf("%d", &option);
     switch (option) {
     case 1:
@@ -157,7 +158,7 @@ int main(int argc, char **argv) {
       exit(0);
       break;
     default:
-      exit(1);
+      printf("Invalid input\n");
       break;
     }
   }
