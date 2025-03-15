@@ -82,6 +82,12 @@ void shuffleQuestions(char ***questions, int questionsCount) {
     strcpy(questions[1][j], answerTmp);
   }
 }
+
+void clearInputBuffer() {
+  while (getc(stdin) != '\n' && getchar() != EOF)
+    ;
+}
+
   int returnSize, questionsCount;
   printf("running\n");
   char ***data = mapInput(argv[1], &returnSize, &questionsCount);
