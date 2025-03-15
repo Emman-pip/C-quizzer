@@ -132,10 +132,37 @@ int startQuiz(char ***questions, int questionsCount) {
   free(answers);
   return 1;
 }
+
+int main(int argc, char **argv) {
   int returnSize, questionsCount;
-  printf("running\n");
   char ***data = mapInput(argv[1], &returnSize, &questionsCount);
   /* printf("%s%s", data[0][0], data[1][0]); */
-  printQuestions(data, questionsCount);
+  system("clear");
+  printf("Created by Emman-pip :)\n");
+  while (1) {
+    printf("----------------- Welcome to my quizzer. ----------------- \n");
+    printf("[1] Start quiz\n[2] See answer key\n[3] clear screen\n[else] "
+           "exit\n\n");
+    int option;
+    printf("Choose an option: ");
+    scanf("%d", &option);
+    switch (option) {
+    case 1:
+      startQuiz(data, questionsCount);
+      break;
+    case 2:
+      printQuestions(data, questionsCount);
+      break;
+    case 3:
+      system("clear");
+      break;
+    case 4:
+      exit(0);
+      break;
+    default:
+      exit(1);
+      break;
+    }
+  }
   return 0;
 }
