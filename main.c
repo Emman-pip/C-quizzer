@@ -49,19 +49,33 @@ char ***mapInput(char *filename, int *returnSize, int *questionsCount) {
   return data;
 }
 
+void printWithCol(char *s) {
+  for (int i = 0; i < (int)strlen(s); i++) {
+    if (i % 64 == 0 && i > 0)
+      printf("OKAY\n");
+    printf("%c", s[i]);
+  }
+}
+
 void printQuestions(char ***questions, int size) {
   system("clear");
   printf("#### Answer Key: ####\n");
-  for (int i = 0; i < size; i++)
-    printf("%d. %s----> %s\n", i + 1, questions[0][i], questions[1][i]);
+  for (int i = 0; i < size; i++) {
+    printWithCol(questions[0][i]);
+    printf("-----> %s\n", questions[1][i]);
+  }
 }
 
 void printEval(char ***questions, char *eval, int size) {
   system("clear");
   printf("\n################ EVALUATION: ################\n");
-  for (int i = 0; i < size; i++)
-    printf("[%c]%d. %s----> %s\n", eval[i], i + 1, questions[0][i],
-           questions[1][i]);
+  for (int i = 0; i < size; i++) {
+    printf("[%c] %d. ", eval[i], i + 1);
+    printWithCol(questions[0][i]);
+    printf("-----> %s\n", questions[1][i]);
+  }
+  /*printf("[%c]%d. %s----> %s\n", eval[i], i + 1, questions[0][i],*/
+  /*       questions[1][i]);*/
 }
 
 void shuffleQuestions(char ***questions, int questionsCount) {
@@ -85,17 +99,6 @@ void clearInputBuffer() {
     ;
 }
 
-int getLine(char *string, int size) {
-  char c;
-  int i = 0;
-  while (i < size - 1 && (c = getc(stdin)) != EOF)
-    string[i++] = c;
-  string[i] = '\0';
-  clearInputBuffer();
-
-  return 1;
-}
-
 int startQuiz(char ***questions, int questionsCount) {
   system("clear");
   shuffleQuestions(questions, questionsCount);
@@ -105,7 +108,8 @@ int startQuiz(char ***questions, int questionsCount) {
   printf("Quiz Start: \n");
   clearInputBuffer();
   for (int i = 0; i < questionsCount; i++) {
-    printf("%sAnswer: ", questions[0][i]);
+    printWithCol(questions[0][i]);
+    printf("Answer: ");
     ans = fgets(ans, SIZE, stdin);
     fflush(stdin);
 
