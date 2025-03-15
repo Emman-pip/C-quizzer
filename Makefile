@@ -1,10 +1,8 @@
-all: run
-	
-
+all: compile run
 
 compile:
 	gcc main.c -o quizzer -Wall -Wextra -Wpedantic
 
 
-run: compile
+run: quizzer
 	./quizzer questions.txt
