@@ -67,8 +67,21 @@ void printEval(char ***questions, char *eval, int size) {
            questions[1][i]);
 }
 
-int main(int argc, char ** argv)
-{
+void shuffleQuestions(char ***questions, int questionsCount) {
+  srand(time(NULL));
+  for (int i = 0, j = rand() % questionsCount; i < questionsCount;
+       i++, j = rand() % questionsCount) {
+    srand(time(NULL));
+    char *questionTmp = malloc(sizeof(char) * SIZE);
+    char *answerTmp = malloc(sizeof(char) * SIZE);
+    strcpy(questionTmp, questions[0][i]);
+    strcpy(answerTmp, questions[1][i]);
+    strcpy(questions[0][i], questions[0][j]);
+    strcpy(questions[1][i], questions[1][j]);
+    strcpy(questions[0][j], questionTmp);
+    strcpy(questions[1][j], answerTmp);
+  }
+}
   int returnSize, questionsCount;
   printf("running\n");
   char ***data = mapInput(argv[1], &returnSize, &questionsCount);
