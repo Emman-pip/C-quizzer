@@ -59,6 +59,13 @@ void printQuestions(char ***questions, int size) {
     printf("%d. %s----> %s\n", i + 1, questions[0][i], questions[1][i]);
 }
 
+void printEval(char ***questions, char *eval, int size) {
+  system("clear");
+  printf("\n################ EVALUATION: ################\n");
+  for (int i = 0; i < size; i++)
+    printf("[%c]%d. %s----> %s\n", eval[i], i + 1, questions[0][i],
+           questions[1][i]);
+}
 
 int main(int argc, char ** argv)
 {
