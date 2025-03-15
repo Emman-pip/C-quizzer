@@ -97,7 +97,7 @@ void clearInputBuffer() {
     ;
 }
 
-int startQuiz(char ***questions, int questionsCount) {
+int identificationQuiz(char ***questions, int questionsCount) {
   system("clear");
   shuffleQuestions(questions, questionsCount);
   char *ans = malloc(sizeof(char) * SIZE);
