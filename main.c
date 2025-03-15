@@ -154,7 +154,7 @@ char **shuffleArr(char ***source, int questionsCount)
       tmp = malloc(sizeof(char) * SIZE);
     }
   for (int i = 0; i < questionsCount; i++)
-    questions[i][0] = 'A' + i;
+    questions[i][0] = 'A' + i, questions[i][strlen(questions[i]) - 1] = '\0';
   return questions;
 }
 
@@ -168,7 +168,7 @@ void printChoices(char **copy, int questionsCount)
       else
 	printf("\t");
     }
-  printf("\n");
+  printf("\n\n");
 }
 
 int indentificationWithChoicesQuiz(char ***questions, int questionsCount) {
