@@ -112,6 +112,7 @@ int identificationQuiz(char ***questions, int questionsCount) {
   printf("Quiz Start: \n");
   clearInputBuffer();
   for (int i = 0; i < questionsCount; i++) {
+    printf("%d/%d. ", i + 1, questionsCount);
     printWithCol(questions[0][i]);
     printf("Answer: ");
     ans = fgets(ans, SIZE, stdin);
@@ -120,10 +121,10 @@ int identificationQuiz(char ***questions, int questionsCount) {
     if (strstr(questions[1][i], ans) && strlen(ans) > 1) {
 
       score++, answers[i] = '/';
-      printf("Right answer!");
+      printf("Right answer!\n");
     } else {
       answers[i] = 'X';
-      printf("Wrong answer!\n Correct was:---> %s", questions[1][i]);
+      printf("Wrong answer!\nCorrect was:---> %s", questions[1][i]);
     }
     printf("\n");
   }
