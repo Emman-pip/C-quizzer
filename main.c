@@ -212,6 +212,11 @@ int indentificationWithChoicesQuiz(char ***questions, int questionsCount) {
 
 int main(int argc, char **argv) {
   int returnSize, questionsCount;
+  if (strcmp(argv[1], "help") == 0) {
+    printf("Use the program like this: \n./quizzer questions.txt_file\n\nRead "
+           "the readme file for more documentation\n");
+    exit(0);
+  }
   char ***data = mapInput(argv[1], &returnSize, &questionsCount);
   /* printf("%s%s", data[0][0], data[1][0]); */
   system(CLEAR);
