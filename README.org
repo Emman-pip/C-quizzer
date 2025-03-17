@@ -19,6 +19,7 @@ A question file must contain the following:
 - letter 'a' or 'A' at the beggining of the line indicating that a
   line is an *answer*
 - there should be an *answer for every question*.
+- '#' at the beggining of the line to indicate a comment
 
 
 If these rules are not followed, the program will not work.
