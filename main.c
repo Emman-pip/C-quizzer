@@ -79,7 +79,8 @@ void printEval(char ***questions, char *eval, int size) {
 void shuffleQuestions(char ***questions, int questionsCount) {
   srand(time(NULL));
   for (int i = 0, j = rand() % questionsCount; i < questionsCount;
-       i++, j = (i + rand() / (RAND_MAX/questionsCount - i) ) % questionsCount) {
+       i++, j = (i + rand() / (RAND_MAX / questionsCount - i)) %
+                questionsCount) {
     srand(time(NULL) + i * i);
     char *questionTmp = malloc(sizeof(char) * SIZE);
     char *answerTmp = malloc(sizeof(char) * SIZE);
