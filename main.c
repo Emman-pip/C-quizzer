@@ -159,11 +159,7 @@ char **shuffleArr(char ***source, int questionsCount) {
 
 void printChoices(char **copy, int questionsCount) {
   for (int i = 0; i < questionsCount; i++) {
-    printf("%s", copy[i]);
-    if (i > 0 && i % 4 == 0)
-      printf("\n");
-    else
-      printf("\t");
+    printf("%s\n", copy[i]);
   }
   printf("\n\n");
 }
