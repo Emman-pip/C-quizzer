@@ -117,10 +117,14 @@ int identificationQuiz(char ***questions, int questionsCount) {
     ans = fgets(ans, SIZE, stdin);
     fflush(stdin);
 
-    if (strstr(questions[1][i], ans))
+    if (strstr(questions[1][i], ans) && strlen(ans) > 1) {
+
       score++, answers[i] = '/';
-    else
+      printf("Right answer!");
+    } else {
       answers[i] = 'X';
+      printf("Wrong answer!\n Correct was:---> %s", questions[1][i]);
+    }
     printf("\n");
   }
   printf("##################################\nScore: %d/%d\n", score,
