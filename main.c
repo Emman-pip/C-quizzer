@@ -37,6 +37,9 @@ char ***mapInput(char *filename, int *returnSize, int *questionsCount) {
     case '\n':
       continue;
       break;
+    case '#':
+      continue;
+      break;
     default:
       printf("Invalid_input: %s\n(could be missing 'a' or 'q)\n", filename);
       exit(1);
