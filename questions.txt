@@ -1,16 +1,13 @@
 # This is a comment
 
 Q: what is yourname?
-A: Emmanuel Parreno
+A: Emmanuel
 
 q: cable that uses pulses of lights
 a: optical cable
 
 q: largest mouse in the universe
 a: capybara
-
-q: sino lovelvoe mo?
-a: si bebu
 
 q: This is a a really really really really really really really really really really really really really really really really really long question.
 a: okay
