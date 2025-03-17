@@ -8,9 +8,12 @@ A repository for a simple commandline quizzer
 
 
 ** How to Use
-To use the program, compile it using make, ~make all~ command. After
+To use the program, compile it using make, ~make all~ for Linux and ~make makeWindows~ for windows command. After
 the program has been compile, run the program as following:
-[LINUX]~./quizzer questions.txt~ or [WINDOWS] ~quizzer.exe questions.txt~
+[LINUX] ~./quizzer questions.txt~ or [WINDOWS] ~quizzer.exe questions.txt~
+
+
+/NOTE/: For windows users, edit line 9 of main.c. Change the word "clear" to "cls"
 
 ** How to create a questions file
 A question file must contain the following:
