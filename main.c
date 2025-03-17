@@ -6,6 +6,8 @@
 
 #define SIZE 1000
 
+#define CLEAR "clear"
+
 char ***mapInput(char *filename, int *returnSize, int *questionsCount) {
   FILE *file = fopen(filename, "r");
 
@@ -61,7 +63,7 @@ void printWithCol(char *s) {
 }
 
 void printQuestions(char ***questions, int size) {
-  system("clear");
+  system(CLEAR);
   printf("#### Answer Key: ####\n");
   for (int i = 0; i < size; i++) {
     printWithCol(questions[0][i]);
@@ -70,7 +72,7 @@ void printQuestions(char ***questions, int size) {
 }
 
 void printEval(char ***questions, char *eval, int size) {
-  system("clear");
+  system(CLEAR);
   printf("\n################ EVALUATION: ################\n");
   for (int i = 0; i < size; i++) {
     printf("[%c] %d. ", eval[i], i + 1);
@@ -102,7 +104,7 @@ void clearInputBuffer() {
 }
 
 int identificationQuiz(char ***questions, int questionsCount) {
-  system("clear");
+  system(CLEAR);
   shuffleQuestions(questions, questionsCount);
   char *ans = malloc(sizeof(char) * SIZE);
   char *answers = malloc(sizeof(char) * questionsCount);
@@ -169,7 +171,7 @@ void printChoices(char **copy, int questionsCount) {
 }
 
 int indentificationWithChoicesQuiz(char ***questions, int questionsCount) {
-  system("clear");
+  system(CLEAR);
   shuffleQuestions(questions, questionsCount);
   char *ans = malloc(sizeof(char) * SIZE);
   char *answers = malloc(sizeof(char) * questionsCount);
@@ -179,7 +181,7 @@ int indentificationWithChoicesQuiz(char ***questions, int questionsCount) {
 
   char **choices = shuffleArr(questions, questionsCount);
   for (int i = 0; i < questionsCount; i++) {
-    system("clear");
+    system(CLEAR);
     printChoices(choices, questionsCount);
     printWithCol(questions[0][i]);
     printf("Answer: ");
@@ -212,7 +214,7 @@ int main(int argc, char **argv) {
   int returnSize, questionsCount;
   char ***data = mapInput(argv[1], &returnSize, &questionsCount);
   /* printf("%s%s", data[0][0], data[1][0]); */
-  system("clear");
+  system(CLEAR);
   printf("Created by Emman-pip :)\n");
   while (1) {
     printf("----------------- Welcome to my quizzer. ----------------- \n");
@@ -235,7 +237,7 @@ int main(int argc, char **argv) {
       printQuestions(data, questionsCount);
       break;
     case 4:
-      system("clear");
+      system(CLEAR);
       break;
     case 5:
       exit(0);
